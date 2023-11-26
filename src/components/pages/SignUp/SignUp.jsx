@@ -86,7 +86,7 @@ const SingUp = () => {
   };
   return (
     <>
-      <h1 className="text-3xl text-center my-2 text-[#403F3F] font-semibold mb-4">
+      <h1 className="text-3xl text-center text-[#403F3F] font-semibold mb-4">
         Sign Up
       </h1>
       <div className="border border-[#FFF] bg-[#FFF] rounded-md flex flex-col md:flex-row lg:flex-row mx-auto mt-7 py-7">
