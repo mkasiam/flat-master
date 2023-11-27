@@ -5,8 +5,18 @@ import Home from "../pages/Home/Home/Home";
 import Login from "../pages/LogIn/LogIn";
 import NotFound from "../pages/NotFound/NotFound";
 import SignUp from "../pages/SignUp/SignUp";
-import PrivateRoute from "./PrivateRoutes";
+import PrivateRoute from "./PrivateRoute.jsx";
 import Dashboard from "../layout/Dashboard";
+import UserProfile from "../pages/Dashboard/User/UserProfile/UserProfile.jsx";
+import MemberProfile from "../pages/Dashboard/Member/MemberProfile/MemberProfile.jsx";
+import MakePayment from "../pages/Dashboard/Member/MakePayment/MakePayment.jsx";
+import PaymentHistory from "../pages/Dashboard/Member/PaymentHistory/PaymentHistory.jsx";
+import AdminRoute from "./AdminRoute.jsx";
+import AdminProfile from "../pages/Dashboard/Admin/AdminProfile/AdminProfile.jsx";
+import ManageMembers from "../pages/Dashboard/Admin/ManageMembers/ManageMembers.jsx";
+import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement/MakeAnnouncement.jsx";
+import ManageCoupons from "../pages/Dashboard/Admin/ManageCoupons/ManageCoupons.jsx";
+import AgreementRequest from "../pages/Dashboard/Admin/AgreementRequest/AgreementRequest.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -49,13 +59,14 @@ export const router = createBrowserRouter([
         path: "userProfile",
         element: <UserProfile></UserProfile>,
       },
+      // Member routes
       {
-        path:"/announcements",
-        element:
+        path: "memberProfile",
+        element: <MemberProfile></MemberProfile>,
       },
       {
-        path: "payment",
-        element: <Payment></Payment>,
+        path: "makePayment",
+        element: <MakePayment></MakePayment>,
       },
       {
         path: "paymentHistory",
@@ -64,44 +75,42 @@ export const router = createBrowserRouter([
 
       // admin only routes
       {
-        path: "adminHome",
+        path: "adminProfile",
         element: (
           <AdminRoute>
-            <AdminHome></AdminHome>
+            <AdminProfile></AdminProfile>
           </AdminRoute>
         ),
       },
       {
-        path: "addItems",
+        path: "manageMembers",
         element: (
           <AdminRoute>
-            <AddItems></AddItems>
+            <ManageMembers></ManageMembers>
           </AdminRoute>
         ),
       },
       {
-        path: "manageItems",
+        path: "makeAnnouncement",
         element: (
           <AdminRoute>
-            <ManageItems></ManageItems>
+            <MakeAnnouncement></MakeAnnouncement>
           </AdminRoute>
         ),
       },
       {
-        path: "updateItem/:id",
+        path: "agreementRequest",
         element: (
           <AdminRoute>
-            <UpdateItem></UpdateItem>
+            <AgreementRequest></AgreementRequest>
           </AdminRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/menu/${params.id}`),
       },
       {
-        path: "users",
+        path: "manageCoupons",
         element: (
           <AdminRoute>
-            <AllUsers></AllUsers>
+            <ManageCoupons></ManageCoupons>
           </AdminRoute>
         ),
       },
