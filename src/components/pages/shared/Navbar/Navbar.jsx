@@ -19,7 +19,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar fixed" data-aos="fade-down">
+    <div className="navbar fixed z-10 bg-opacity-30 bg-black text-white">
       <div className="navbar-start gap-2 md:gap-5 lg:gap-7">
         <div className="dropdown lg:hidden">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -64,7 +64,7 @@ const Navbar = () => {
       <div className="navbar-end flex items-center">
         <div>
           {user ? (
-            <div className="dropdown dropdown-end">
+            <div className="dropdown dropdown-end text-black">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img src={user && user?.photoURL} />

@@ -17,6 +17,7 @@ import ManageMembers from "../pages/Dashboard/Admin/ManageMembers/ManageMembers.
 import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement/MakeAnnouncement.jsx";
 import ManageCoupons from "../pages/Dashboard/Admin/ManageCoupons/ManageCoupons.jsx";
 import AgreementRequest from "../pages/Dashboard/Admin/AgreementRequest/AgreementRequest.jsx";
+import Announcements from "../pages/Dashboard/shared/Announcements/Announcements.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
       {
         path: "userProfile",
         element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "announcements",
+        element: <Announcements></Announcements>,
       },
       // Member routes
       {
