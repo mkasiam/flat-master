@@ -1,4 +1,9 @@
+import { FaBullhorn, FaPaperPlane, FaRegUser, FaUsers } from "react-icons/fa6";
+import { FaTicketAlt } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+
 const Dashboard = () => {
+  const isAdmin = true;
   return (
     <div className="flex">
       {/* dashboard side bar */}
@@ -7,32 +12,32 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li>
-                <NavLink to="/dashboard/adminHome">
-                  <FaHome></FaHome>
-                  Admin Home
+                <NavLink to="/dashboard/adminProfile">
+                  <FaRegUser />
+                  Admin Profile
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/addItems">
-                  <FaUtensils></FaUtensils>
-                  Add Items
+                <NavLink to="/dashboard/manageMembers">
+                  <FaUsers />
+                  Manage Members
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/manageItems">
-                  <FaList></FaList>
-                  Manage Items
+                <NavLink to="/dashboard/makeAnnouncement">
+                <FaBullhorn />
+                  Make Announcement
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/bookings">
-                  <FaBook></FaBook>
-                  Manage Bookings
+                <NavLink to="/dashboard/agreementRequest">
+                <FaPaperPlane />
+                  Agreement Request
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/users">
-                  <FaUsers></FaUsers>
+                <NavLink to="/dashboard/manageCoupons">
+                <FaTicketAlt />
                   All Users
                 </NavLink>
               </li>
