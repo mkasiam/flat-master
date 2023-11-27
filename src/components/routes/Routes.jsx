@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/apartment",
+        path: "/apartments",
         element: <Apartments></Apartments>,
         loader: () => fetch("http://localhost:5000/apartmentCount"),
       },

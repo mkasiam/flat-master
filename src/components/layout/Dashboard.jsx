@@ -1,15 +1,24 @@
-import { FaBullhorn, FaPaperPlane, FaRegUser, FaUsers } from "react-icons/fa6";
-import { FaTicketAlt } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { FaHome, FaTicketAlt } from "react-icons/fa";
+import {
+  FaBuilding,
+  FaBullhorn,
+  FaList,
+  FaMoneyBill,
+  FaPaperPlane,
+  FaRegUser,
+  FaUsers,
+} from "react-icons/fa6";
+import { NavLink, Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   const isAdmin = true;
+  const isMember = true;
   return (
     <div className="flex">
       {/* dashboard side bar */}
       <div className="w-64 min-h-screen bg-orange-400">
         <ul className="menu p-4">
-          {isAdmin ? (
+          {isAdmin && (
             <>
               <li>
                 <NavLink to="/dashboard/adminProfile">
@@ -25,57 +34,68 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/makeAnnouncement">
-                <FaBullhorn />
+                  <FaBullhorn />
                   Make Announcement
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/agreementRequest">
-                <FaPaperPlane />
+                  <FaPaperPlane />
                   Agreement Request
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/manageCoupons">
-                <FaTicketAlt />
+                  <FaTicketAlt />
                   All Users
+                </NavLink>
+              </li>
+            </>
+          )}
+          {isMember ? (
+            <>
+              <li>
+                <NavLink to="/dashboard/memberProfile">
+                  <FaHome></FaHome>
+                  Member Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/makePayment">
+                  <FaMoneyBill></FaMoneyBill>
+                  Make Payment
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/paymentHistory">
+                  <FaList></FaList>
+                  Payment History
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/announcements">
+                <FaBullhorn />
+                  Announcements
                 </NavLink>
               </li>
             </>
           ) : (
             <>
               <li>
-                <NavLink to="/dashboard/userHome">
+                <NavLink to="/dashboard/userProfile">
                   <FaHome></FaHome>
-                  User Home
+                  User Profile
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/history">
-                  <FaCalendar></FaCalendar>
-                  Not History
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/cart">
-                  <FaShoppingCart></FaShoppingCart>
-                  My Cart ({cart.length})
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/review">
-                  <FaAd></FaAd>
-                  Add a Review
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/paymentHistory">
-                  <FaList></FaList>
-                  Real Payment History
+                <NavLink to="/dashboard/announcements">
+                <FaBullhorn />
+                  Announcements
                 </NavLink>
               </li>
             </>
           )}
+
           {/* shared nav links */}
           <div className="divider"></div>
           <li>
@@ -85,15 +105,9 @@ const Dashboard = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/order/salad">
-              <FaSearch></FaSearch>
+            <NavLink to="/apartments">
+              <FaBuilding />
               Menu
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/order/contact">
-              <FaEnvelope></FaEnvelope>
-              Contact
             </NavLink>
           </li>
         </ul>
