@@ -82,7 +82,7 @@ const Navbar = () => {
                   </h1>
                 </li>
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/dashboard">Dashboard</Link>
                 </li>
                 <li>
                   <a onClick={handleLogOut}>Logout</a>
