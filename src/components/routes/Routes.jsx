@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
+import Apartments from "../pages/Apartments/Apartments/Apartments";
 import Home from "../pages/Home/Home/Home";
-import SignUp from "../pages/SignUp/SignUp";
 import Login from "../pages/LogIn/LogIn";
-import Apartment from "../pages/Apartment/Apartment/Apartment";
 import NotFound from "../pages/NotFound/NotFound";
+import SignUp from "../pages/SignUp/SignUp";
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +17,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/apartment",
-        element: <Apartment></Apartment>,
+        element: <Apartments></Apartments>,
+        loader: () => fetch("http://localhost:5000/apartmentCount")
       },
       {
         path: "/signUp",
