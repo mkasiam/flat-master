@@ -76,43 +76,23 @@ export const router = createBrowserRouter([
       // admin only routes
       {
         path: "adminProfile",
-        element: (
-          <AdminRoute>
-            <AdminProfile></AdminProfile>
-          </AdminRoute>
-        ),
+        element: <AdminProfile></AdminProfile>,
       },
       {
         path: "manageMembers",
-        element: (
-          <AdminRoute>
-            <ManageMembers></ManageMembers>
-          </AdminRoute>
-        ),
+        element: <ManageMembers></ManageMembers>,
       },
       {
         path: "makeAnnouncement",
-        element: (
-          <AdminRoute>
-            <MakeAnnouncement></MakeAnnouncement>
-          </AdminRoute>
-        ),
+        element: <MakeAnnouncement></MakeAnnouncement>,
       },
       {
         path: "agreementRequest",
-        element: (
-          <AdminRoute>
-            <AgreementRequest></AgreementRequest>
-          </AdminRoute>
-        ),
+        element: <AgreementRequest></AgreementRequest>,
       },
       {
         path: "manageCoupons",
-        element: (
-          <AdminRoute>
-            <ManageCoupons></ManageCoupons>
-          </AdminRoute>
-        ),
+        element: <ManageCoupons></ManageCoupons>,
       },
     ],
   },
