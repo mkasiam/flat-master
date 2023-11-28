@@ -47,7 +47,7 @@ const Dashboard = () => {
               <li>
                 <NavLink to="/dashboard/manageCoupons">
                   <FaTicketAlt />
-                  All Users
+                  Manage Coupons
                 </NavLink>
               </li>
             </>

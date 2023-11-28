@@ -35,9 +35,8 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     signIn(email, password)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
+      .then(() => {
+        navigate("/");
       })
       .catch((error) => setErrorMessage(error.message));
   };
@@ -51,9 +50,7 @@ const Login = () => {
         };
         axiosPublic
           .post("/users", userInfo)
-          .then((res) => {
-            console.log(res.data);
-          })
+          .then()
           .catch((error) => console.log(error));
 
         navigate("/");
