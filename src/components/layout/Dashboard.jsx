@@ -9,9 +9,10 @@ import {
   FaUsers,
 } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../hooks/useAdmin";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
   const isMember = true;
   return (
     <div className="flex">

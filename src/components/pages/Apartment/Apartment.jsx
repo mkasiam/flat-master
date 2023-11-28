@@ -26,6 +26,7 @@ const Apartment = ({ apartment }) => {
       userName,
       floor_no,
       block_name,
+      room_no,
       rent,
       date: formattedDateTime,
       status: "pending",

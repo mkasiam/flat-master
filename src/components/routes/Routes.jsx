@@ -19,7 +19,6 @@ import ManageCoupons from "../pages/Dashboard/Admin/ManageCoupons/ManageCoupons.
 import AgreementRequest from "../pages/Dashboard/Admin/AgreementRequest/AgreementRequest.jsx";
 import Announcements from "../pages/Dashboard/shared/Announcements/Announcements.jsx";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -50,11 +49,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: (
-      <PrivateRoute>
-        <Dashboard></Dashboard>
-      </PrivateRoute>
-    ),
+    element: <Dashboard></Dashboard>,
     children: [
       // normal user routes
       {

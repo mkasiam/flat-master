@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 const AgreementRequestCard = ({ agreement }) => {
-  console.log(agreement);
   const {
     _id,
     userEmail,
