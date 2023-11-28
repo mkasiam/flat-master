@@ -10,10 +10,30 @@ import {
 } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
+import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const Dashboard = () => {
+  const { user } = useAuth();
+  const userEmail = user?.email;
+  const [isMember, setIsMember] = useState(false);
+  const [isUser, SetIsUser] = useState(false);
+  const axiosSecure = useAxiosSecure();
   const [isAdmin] = useAdmin();
-  const isMember = true;
+
+  useEffect(() => {
+    axiosSecure.get(`/users/${userEmail}`).then((res) => {
+      if (res.data.role == "user") {
+        SetIsUser(true);
+      }
+      if (res.data.role == "member") {
+        setIsMember(true);
+      }
+    });
+  }, [userEmail, axiosSecure]);
+
   return (
     <div className="flex">
       {/* dashboard side bar */}
@@ -53,7 +73,7 @@ const Dashboard = () => {
               </li>
             </>
           )}
-          {isMember ? (
+          {isMember && (
             <>
               <li>
                 <NavLink to="/dashboard/memberProfile">
@@ -80,7 +100,9 @@ const Dashboard = () => {
                 </NavLink>
               </li>
             </>
-          ) : (
+          )}
+
+          {isUser && (
             <>
               <li>
                 <NavLink to="/dashboard/userProfile">

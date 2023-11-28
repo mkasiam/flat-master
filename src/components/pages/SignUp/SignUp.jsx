@@ -65,7 +65,7 @@ const SingUp = () => {
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Your Registration is successfully done.Please Log in",
+                  title: "Your Registration successful.Please Log in",
                   showConfirmButton: false,
                   timer: 1500,
                 });
