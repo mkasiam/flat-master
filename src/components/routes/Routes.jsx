@@ -49,7 +49,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       // normal user routes
       {
@@ -77,23 +81,43 @@ export const router = createBrowserRouter([
       // admin only routes
       {
         path: "adminProfile",
-        element: <AdminProfile></AdminProfile>,
+        element: (
+          <AdminRoute>
+            <AdminProfile></AdminProfile>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageMembers",
-        element: <ManageMembers></ManageMembers>,
+        element: (
+          <AdminRoute>
+            <ManageMembers></ManageMembers>
+          </AdminRoute>
+        ),
       },
       {
         path: "makeAnnouncement",
-        element: <MakeAnnouncement></MakeAnnouncement>,
+        element: (
+          <AdminRoute>
+            <MakeAnnouncement></MakeAnnouncement>
+          </AdminRoute>
+        ),
       },
       {
         path: "agreementRequest",
-        element: <AgreementRequest></AgreementRequest>,
+        element: (
+          <AdminRoute>
+            <AgreementRequest></AgreementRequest>
+          </AdminRoute>
+        ),
       },
       {
         path: "manageCoupons",
-        element: <ManageCoupons></ManageCoupons>,
+        element: (
+          <AdminRoute>
+            <ManageCoupons></ManageCoupons>
+          </AdminRoute>
+        ),
       },
     ],
   },

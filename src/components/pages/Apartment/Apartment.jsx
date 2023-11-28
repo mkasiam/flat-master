@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Apartment = ({ apartment }) => {
   const { img, floor_no, block_name, apartment_no, rent, room_no } = apartment;
