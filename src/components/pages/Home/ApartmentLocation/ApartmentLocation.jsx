@@ -1,11 +1,9 @@
-// Install the required packages
-// npm install react-leaflet leaflet
 
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 const ApartmentLocation = () => {
-  const defaultCenter = [37.7749, -122.4194];
+  const defaultCenter = [23.7917, 90.4167];
 
   const apartmentDetails = {
     name: 'Your Apartment Name',

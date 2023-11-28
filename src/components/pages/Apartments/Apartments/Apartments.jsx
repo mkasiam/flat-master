@@ -15,9 +15,7 @@ const Apartments = () => {
 
   useEffect(() => {
     axiosPublic
-      .get(`/apartments?page=${currentPage}&size=${itemsPerPage}`, {
-        withCredentials: true,
-      })
+      .get(`/apartments?page=${currentPage}&size=${itemsPerPage}`)
       .then((res) => setApartments(res.data));
   }, [axiosPublic, currentPage, itemsPerPage]);
 
@@ -39,7 +37,7 @@ const Apartments = () => {
 
   return (
     <div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-8 pt-20">
         {apartments.map((apartment) => (
           <Apartment key={apartment._id} apartment={apartment} />
         ))}
