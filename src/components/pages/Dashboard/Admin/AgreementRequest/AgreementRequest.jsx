@@ -4,10 +4,10 @@ import AgreementRequestCard from "./AgreementRequestCard";
 
 const AgreementRequest = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: agreements = [] } = useQuery({
+  const { data: agreements = [], refetch } = useQuery({
     queryKey: ["agreements"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/agreements");
+      const res = await axiosSecure.get("/agreements?status=pending");
       return res.data;
     },
   });
@@ -18,7 +18,7 @@ const AgreementRequest = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {agreements.map((agreement, index) => (
-          <AgreementRequestCard key={index} agreement={agreement} />
+          <AgreementRequestCard key={index} agreement={agreement} refetch={refetch}/>
         ))}
       </div>
     </>

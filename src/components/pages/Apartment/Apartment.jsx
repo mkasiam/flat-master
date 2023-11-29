@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 import useAuth from "../../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Apartment = ({ apartment }) => {
   const { img, floor_no, block_name, apartment_no, rent, room_no } = apartment;
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   useEffect(() => {
@@ -31,7 +31,7 @@ const Apartment = ({ apartment }) => {
       date: formattedDateTime,
       status: "pending",
     };
-    axiosSecure
+    axiosPublic
       .post("/agreements", agreementRequest)
       .then((res) => {
         const data = res.data;

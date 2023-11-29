@@ -1,34 +1,17 @@
-import { useEffect, useRef, useState } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  LoadCanvasTemplate,
-  loadCaptchaEnginge,
-  validateCaptcha,
-} from "react-simple-captcha";
+
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
+import { useState } from "react";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
-  const captchaRef = useRef(null);
-  const [disabled, setDisabled] = useState(true);
   const { signIn, googleSignIn } = useAuth();
 
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
-  const handleValidateCaptcha = () => {
-    const user_captcha_value = captchaRef.current.value;
-    if (validateCaptcha(user_captcha_value)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
-    }
-  };
   const handleLogIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -47,7 +30,7 @@ const Login = () => {
         const userInfo = {
           name: user?.displayName,
           email: user?.email,
-          role:"user"
+          role: "user",
         };
         axiosPublic
           .post("/users", userInfo)
@@ -115,29 +98,9 @@ const Login = () => {
                     </p>
                   )}
                 </div>
-                <div>
-                  <label className="text-md font-semibold text-[#403F3F]">
-                    Captcha
-                    <LoadCanvasTemplate />
-                  </label>
-                  <input
-                    type="text"
-                    ref={captchaRef}
-                    placeholder="Enter captcha here"
-                    name="captcha"
-                    className="input input-bordered w-full bg-white rounded-md"
-                    required
-                  />
-                </div>
-                <button
-                  onBlur={handleValidateCaptcha}
-                  className="btn btn-outline btn-xs"
-                >
-                  Validate
-                </button>
+
                 <div className="mt-6">
                   <button
-                    disabled={disabled}
                     type="submit"
                     className="btn bg-[#8768EE] hover:bg-[#a690f0] text-white w-full rounded-md"
                   >
