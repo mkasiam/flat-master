@@ -1,5 +1,5 @@
 import { FaGithub, FaGoogle } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
@@ -9,6 +9,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { signIn, googleSignIn } = useAuth();
 
@@ -19,7 +20,7 @@ const Login = () => {
     const password = form.password.value;
     signIn(email, password)
       .then(() => {
-        navigate("/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => setErrorMessage(error.message));
   };
@@ -37,7 +38,7 @@ const Login = () => {
           .then()
           .catch((error) => console.log(error));
 
-        navigate("/");
+        navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
         const errorMessage = error.message;

@@ -5,11 +5,16 @@ import { useQuery } from "@tanstack/react-query";
 
 const ManageMembers = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: users = [], refetch } = useQuery({
-    queryKey: ["users"],
+  const { data: members = [], refetch } = useQuery({
+    queryKey: ["members"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users?role=member");
-      return res.data;
+      try {
+        const res = await axiosSecure.get("/users?role=member");
+        return res.data;
+      } catch (error) {
+        console.error("Error fetching member users:", error);
+        throw error; 
+      }
     },
   });
 
@@ -58,7 +63,7 @@ const ManageMembers = () => {
     <div>
       <div className="flex justify-evenly my-4">
         <h2 className="text-3xl">All Users</h2>
-        <h2 className="text-3xl">Total Users: {users.length}</h2>
+        <h2 className="text-3xl">Total Users: {members.length}</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra w-full">
@@ -73,7 +78,7 @@ const ManageMembers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
+            {members.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
@@ -86,9 +91,7 @@ const ManageMembers = () => {
                       onClick={() => handleMakeAdmin(user)}
                       className="btn btn-lg bg-orange-500"
                     >
-                      <FaUsers
-                        className="text-white text-2xl"
-                      ></FaUsers>
+                      <FaUsers className="text-white text-2xl"></FaUsers>
                     </button>
                   )}
                 </td>
