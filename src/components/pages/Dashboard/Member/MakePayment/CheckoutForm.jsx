@@ -86,7 +86,7 @@ const CheckoutForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="max-w-xl p-6 bg-white rounded-md shadow-md">
       <CardElement
         options={{
           style: {
@@ -104,15 +104,17 @@ const CheckoutForm = () => {
         }}
       />
       <button
-        className="btn btn-sm btn-primary my-4"
+        className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring focus:border-blue-300"
         type="submit"
         disabled={!stripe || !clientSecret}
       >
         Pay
       </button>
-      <p className="text-red-600">{error}</p>
+      <p className="text-red-600 mt-2">{error}</p>
       {transactionId && (
-        <p className="text-green-600"> Your transaction id: {transactionId}</p>
+        <p className="text-green-600 mt-2">
+          Your transaction id: {transactionId}
+        </p>
       )}
     </form>
   );
