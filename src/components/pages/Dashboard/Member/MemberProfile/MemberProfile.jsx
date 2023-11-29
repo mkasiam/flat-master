@@ -1,25 +1,46 @@
-
+import useAuth from "../../../../../hooks/useAuth";
+import useLoadAgreements from "../../../../../hooks/useLoadAgreements";
 
 const MemberProfile = () => {
-    return (
-        <div className="bg-white p-8 rounded shadow-md">
-          <img src={img} alt="User Avatar" className="rounded-full w-16 h-16 mx-auto mb-4" />
-          <h2 className="text-xl font-bold mb-4">{name}</h2>
-          <p className="text-gray-600 mb-2">{email}</p>
-          <p className="text-gray-600 mb-4">Agreement Accept Date: {agreementAcceptDate}</p>
-    
-          {role === 'member' && (
-            <div>
-              <p className="text-gray-600">Role: {role}</p>
-              {/* Conditionally render fields as "none" for the member */}
-              <p className="text-gray-600">Floor: {floorNo ? floorNo : 'none'}</p>
-              <p className="text-gray-600">Block: {block ? block : 'none'}</p>
-              <p className="text-gray-600">Room No: {roomNo ? roomNo : 'none'}</p>
-              <p className="text-gray-600">Rent: {rent ? rent : 'none'}</p>
-            </div>
-          )}
-        </div>
-      );
+  const { user } = useAuth();
+  const [agreements] = useLoadAgreements();
+  const filteredAgreements = agreements.filter(
+    (agreement) => agreement.userEmail === user?.email
+  );
+
+  return (
+    <div className="container mx-auto mt-8 p-6 bg-white rounded shadow-md">
+      <div className="flex items-center flex-col">
+        <img
+          src={user?.photoURL}
+          alt="User Avatar"
+          className="rounded-full w-20 h-20 mb-4"
+        />
+        <h2 className="text-2xl font-bold mb-2">{user?.displayName}</h2>
+        <p className="text-gray-600 mb-2">{user?.email}</p>
+        {filteredAgreements.length > 0 && (
+          <p className="text-gray-600">
+            Agreement Accept Date: {filteredAgreements[0].accept_date}
+          </p>
+        )}
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        {filteredAgreements.map((agreement, index) => (
+          <div key={index} className="border p-4 rounded shadow-md">
+            <p className="text-gray-700 font-semibold">Agreement Details</p>
+            <hr className="my-2" />
+            <p className="text-gray-600">Floor: {agreement.floor_no}</p>
+            <p className="text-gray-600">Block: {agreement.block_name}</p>
+            <p className="text-gray-600">Room No: {agreement.room_no}</p>
+            <p className="text-gray-600">Rent: {agreement.rent}</p>
+            <p className="text-gray-600">
+              Agreement Accept Date: {agreement.accept_date}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default MemberProfile;
