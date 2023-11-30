@@ -7,14 +7,14 @@ const MemberProfile = () => {
   const filteredAgreements = agreements.filter(
     (agreement) => agreement.userEmail === user?.email
   );
-
+  
   return (
     <div className="container mx-auto mt-8 p-6 bg-white rounded shadow-md">
       <div className="flex items-center flex-col">
         <img
           src={user?.photoURL}
           alt="User Avatar"
-          className="rounded-full w-20 h-20 mb-4"
+          className="rounded-full w-28"
         />
         <h2 className="text-2xl font-bold mb-2">{user?.displayName}</h2>
         <p className="text-gray-600 mb-2">{user?.email}</p>

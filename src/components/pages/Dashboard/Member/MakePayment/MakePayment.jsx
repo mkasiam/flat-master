@@ -17,11 +17,7 @@ const MakePayment = () => {
   const [selectedAgreements, setSelectedAgreements] = useState([]);
 
   const handlePayment = () => {
-    // Calculate total rent for all selected agreements
     const totalRent = selectedAgreements.reduce((sum, agreement) => sum + agreement.rent, 0);
-    // Display other user information as needed
-
-    // Now you can use totalRent and other user information for payment
   };
 
   return (
@@ -64,7 +60,7 @@ const MakePayment = () => {
           <p className="text-gray-600">Total Rent: {selectedAgreements.reduce((sum, agreement) => sum + agreement.rent, 0)}</p>
           {/* Display other user information as needed */}
           {/* Display the CheckoutForm for the selected agreements */}
-          <div className="mt-4">
+          <div className="mt-4 p-8">
             <Elements stripe={stripePromise}>
               <CheckoutForm />
             </Elements>
