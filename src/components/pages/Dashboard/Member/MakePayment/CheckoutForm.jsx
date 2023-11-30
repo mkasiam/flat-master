@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../../hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const CheckoutForm = () => {
   const [error, setError] = useState("");
@@ -15,14 +16,22 @@ const CheckoutForm = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const totalPrice = 5000;
+  const { data: agreements = [], refetch } = useQuery({
+    queryKey: ["agreements"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/agreements?email=${user.email}");
+      return res.data;
+    },
+  });
+
+  const totalPrice = agreements.reduce((total, item) => total + item.rent, 0);
+
 
   useEffect(() => {
     if (totalPrice > 0) {
       axiosSecure
         .post("/create-payment-intent", { price: totalPrice })
         .then((res) => {
-          console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
@@ -73,20 +82,40 @@ const CheckoutForm = () => {
       if (paymentIntent.status === "succeeded") {
         console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Thank you for the taka paisa",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/dashboard/paymentHistory");
+
+        // now save the payment in the database
+        const payment = {
+          email: user.email,
+          price: totalPrice,
+          transactionId: paymentIntent.id,
+          date: new Date(), // utc date convert. use moment js to
+          cartIds: agreements.map((item) => item._id),
+          menuItemIds: agreements.map((item) => item.menuId),
+          status: "pending",
+        };
+
+        const res = await axiosSecure.post("/payments", payment);
+        console.log("payment saved", res.data);
+        refetch();
+        if (res.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Thank you for your payment",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/dashboard/paymentHistory");
+        }
       }
     }
   };
 
   return (
-    <form className="max-w-xl p-6 bg-white rounded-md shadow-md">
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-xl p-6 bg-white rounded-md shadow-md"
+    >
       <CardElement
         options={{
           style: {

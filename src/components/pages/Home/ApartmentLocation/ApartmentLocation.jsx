@@ -6,8 +6,8 @@ const ApartmentLocation = () => {
   const defaultCenter = [23.7917, 90.4167];
 
   const apartmentDetails = {
-    name: 'Your Apartment Name',
-    address: '123 Main Street, City',
+    name: 'Gulhan Kumar Mansion',
+    address: '123 Gulshan, Dhaka',
     amenities: ['Spacious Rooms', 'Beautiful View', 'Free Parking'],
   };
 
