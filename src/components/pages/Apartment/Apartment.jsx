@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import useAuth from "../../../hooks/useAuth";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Apartment = ({ apartment }) => {
@@ -19,6 +19,15 @@ const Apartment = ({ apartment }) => {
   const formattedDateTime = currentDateTime.toLocaleString();
 
   const handleAgreement = () => {
+    if (!user) {
+      Swal.fire({
+        icon: "error",
+        title: "Please Go go Sign In!",
+        text: "Sign in to do agreement request",
+      });
+      return;
+    }
+
     const userEmail = user?.email;
     const userName = user?.displayName;
     const agreementRequest = {
