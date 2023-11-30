@@ -167,7 +167,7 @@ const Dashboard = () => {
         <ul className="menu p-4 hidden lg:block">{links}</ul>
       </div>
       {/* dashboard content */}
-      <div className="flex-1">
+      <div className="flex-1 p-8">
         <Outlet></Outlet>
       </div>
     </div>
